@@ -7,6 +7,7 @@
   - Prisma schema definition (User & Application models)
   - Database migrations (`init` and `add_application_fields`)
   - Prisma client setup
+  - **Health check endpoint with DB verification**
 - **Next Step:** Building API endpoints (starting with `GET /api/applications`)
 
 ## Tech Stack
@@ -44,10 +45,11 @@
 ```
 backend/
 ├── src/
-│   ├── index.ts          # Express app setup
-│   ├── routes.ts         # All API routes in one file
-│   ├── middleware.ts     # JWT auth middleware
-│   └── db.ts             # Prisma client export
+│   ├── index.ts          # Express app entry point
+│   ├── controllers/      # Route handlers (Logic)
+│   ├── routes/           # API route definitions
+│   ├── middleware/       # Middleware (Auth, etc.)
+│   └── lib/              # Shared utilities (Prisma client)
 ├── prisma/
 │   └── schema.prisma
 └── package.json
