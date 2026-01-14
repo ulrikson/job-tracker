@@ -12,7 +12,7 @@ export default function LoginPage() {
       <div className="w-full max-w-md space-y-8">
         <div className="text-center">
           <h1 className="text-4xl font-extrabold tracking-tight text-indigo-900">Job Tracker</h1>
-          <p className="mt-2 text-sm text-gray-600">Manage your job applications efficiently.</p>
+          <p className="mt-2 text-sm text-gray-600">Manage your job applications effortlessly.</p>
         </div>
         <div className="bg-white py-8 px-4 shadow sm:rounded-2xl sm:px-10">
           <LoginForm />
