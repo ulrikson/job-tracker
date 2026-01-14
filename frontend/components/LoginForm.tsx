@@ -35,65 +35,82 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="w-full max-w-md p-8 space-y-6 bg-white rounded shadow-md">
-      <h1 className="text-2xl font-bold text-center text-gray-900">Sign In</h1>
+    <div className="w-full">
       {error && (
-        <div className="p-3 text-sm text-red-500 bg-red-100 rounded">
+        <div className="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg" role="alert">
           {error}
         </div>
       )}
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form className="space-y-6" onSubmit={handleSubmit}>
         <div>
           <label
             htmlFor="email"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium leading-6 text-gray-900"
           >
-            Email
+            Email address
           </label>
-          <input
-            id="email"
-            type="email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-3 py-2 mt-1 border border-gray-300 rounded focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-black"
-            placeholder="you@example.com"
-          />
+          <div className="mt-2">
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autoComplete="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="block w-full rounded-xl border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-900 sm:text-sm sm:leading-6 px-3"
+            />
+          </div>
         </div>
+
         <div>
-          <label
-            htmlFor="password"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Password
-          </label>
-          <input
-            id="password"
-            type="password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-3 py-2 mt-1 border border-gray-300 rounded focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-black"
-            placeholder="••••••••"
-          />
+          <div className="flex items-center justify-between">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium leading-6 text-gray-900"
+            >
+              Password
+            </label>
+            <div className="text-sm">
+              <a href="#" className="font-semibold text-indigo-900 hover:text-indigo-800">
+                Forgot password?
+              </a>
+            </div>
+          </div>
+          <div className="mt-2">
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autoComplete="current-password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="block w-full rounded-xl border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-900 sm:text-sm sm:leading-6 px-3"
+            />
+          </div>
         </div>
-        <button
-          type="submit"
-          disabled={loading}
-          className={`w-full px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
-            loading ? "opacity-50 cursor-not-allowed" : ""
-          }`}
-        >
-          {loading ? "Signing in..." : "Sign In"}
-        </button>
+
+        <div>
+          <button
+            type="submit"
+            disabled={loading}
+            className={`flex w-full justify-center rounded-xl bg-indigo-900 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-900 ${
+              loading ? "opacity-50 cursor-not-allowed" : ""
+            }`}
+          >
+            {loading ? "Signing in..." : "Sign in"}
+          </button>
+        </div>
       </form>
-      <p className="text-center text-sm text-gray-600">
-        Don't have an account?{" "}
+
+      <p className="mt-10 text-sm text-center text-gray-500">
+        Not a member?{" "}
         <Link
           href="/register"
-          className="font-medium text-blue-600 hover:text-blue-500"
+          className="font-semibold leading-6 text-indigo-900 hover:text-indigo-800"
         >
-          Register
+          Register now
         </Link>
       </p>
     </div>
