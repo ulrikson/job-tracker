@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { apiRequest } from '@/lib/api';
-import { JobApplication, User } from '@/lib/types';
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { apiRequest } from "@/lib/api";
+import { JobApplication, User } from "@/lib/types";
 
 export default function Dashboard() {
   const [user, setUser] = useState<User | null>(null);
@@ -12,9 +12,9 @@ export default function Dashboard() {
   const router = useRouter();
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('user');
+    const storedUser = localStorage.getItem("user");
     if (!storedUser) {
-      router.push('/login');
+      router.push("/login");
       return;
     }
     setUser(JSON.parse(storedUser));
@@ -23,19 +23,19 @@ export default function Dashboard() {
 
   const fetchApplications = async () => {
     try {
-      const data = await apiRequest('/applications');
+      const data = await apiRequest("/applications");
       setApplications(data);
     } catch (error) {
-      console.error('Failed to fetch applications:', error);
+      console.error("Failed to fetch applications:", error);
     } finally {
       setLoading(false);
     }
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    router.push('/login');
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    router.push("/");
   };
 
   if (!user) {
