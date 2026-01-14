@@ -1,9 +1,12 @@
 import { Request, Response } from 'express';
 import prisma from '../lib/prisma';
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 
 export const getApplications = async (req: Request, res: Response) => {
   try {
     const applications = await prisma.jobApplication.findMany();
+
+    // TODO: Auth needed
 
     res.json(applications);
   } catch (error) {
@@ -24,7 +27,7 @@ export const createApplication = async (req: Request, res: Response) => {
       data: {
         company,
         link,
-        userId: 1, 
+        userId: 1,
       },
     });
 
@@ -34,6 +37,36 @@ export const createApplication = async (req: Request, res: Response) => {
     res.status(500).json({
       status: 'error',
       message: "Couldn't create application",
+    });
+  }
+};
+
+export const updateApplication = async (req: Request, res: Response) => {
+  try {
+    const { company, link } = req.body;
+
+    // TODO: Auth needed
+
+    const newApplication = await prisma.jobApplication.update({
+      where: { id: Number(req.params.id) },
+      data: { company, link },
+    });
+
+    res.status(201).json(newApplication);
+  } catch (error: any) {
+    console.error(error);
+
+    if (error.code === 'P2025') {
+      res.status(404).json({
+        status: 'error',
+        message: "Couldn't find application",
+      });
+      return;
+    }
+
+    res.status(500).json({
+      status: 'error',
+      message: "Couldn't update application",
     });
   }
 };

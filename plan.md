@@ -9,8 +9,8 @@
   - Prisma client setup & standardizing paths
   - Health check endpoint with DB verification
   - **Test User Seeded** (ID: 1)
-  - **API endpoints:** `GET /api/applications` & `POST /api/applications` working
-- **Next Step:** Implement `PUT /api/applications/:id` and `DELETE /api/applications/:id`
+  - **API endpoints:** `GET /api/applications` & `POST /api/applications` & `PUT /api/applications/:id` working
+- **Next Step:** Implement `DELETE /api/applications/:id`
 
 ## Tech Stack
 
