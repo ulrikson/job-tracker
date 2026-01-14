@@ -23,5 +23,13 @@ Thumbs.db
 *.swo
 
 # Prisma
-/prisma/sqlite
+/backend/prisma/sqlite
 src/generated
+
+# Next.js
+.next/
+out/
+build
+.vercel
+*.tsbuildinfo
+next-env.d.ts
