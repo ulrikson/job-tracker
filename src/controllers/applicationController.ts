@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import prisma from '../lib/prisma';
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 
 export const getApplications = async (req: Request, res: Response) => {
   try {
@@ -67,6 +66,35 @@ export const updateApplication = async (req: Request, res: Response) => {
     res.status(500).json({
       status: 'error',
       message: "Couldn't update application",
+    });
+  }
+};
+
+export const deleteApplication = async (req: Request, res: Response) => {
+  try {
+    // TODO: Auth needed
+
+    await prisma.jobApplication.delete({
+      where: { id: Number(req.params.id) },
+    });
+
+    res.status(200).json({
+      message: 'Successfully delete',
+    });
+  } catch (error: any) {
+    console.error(error);
+
+    if (error.code === 'P2025') {
+      res.status(404).json({
+        status: 'error',
+        message: "Couldn't find application",
+      });
+      return;
+    }
+
+    res.status(500).json({
+      status: 'error',
+      message: "Couldn't delete application",
     });
   }
 };
