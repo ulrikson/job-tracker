@@ -9,8 +9,17 @@
   - Prisma client setup & standardizing paths
   - Health check endpoint with DB verification
   - **Test User Seeded** (ID: 1)
-  - **API endpoints:** `GET /api/applications` & `POST /api/applications` & `PUT /api/applications/:id` working
-- **Next Step:** Implement `DELETE /api/applications/:id`
+  - **API endpoints:** 
+    - `GET /api/applications` (Protected)
+    - `POST /api/applications` (Protected)
+    - `PUT /api/applications/:id` (Protected)
+    - `DELETE /api/applications/:id` (Protected)
+  - **JWT Authentication:**
+    - `POST /api/auth/register`
+    - `POST /api/auth/login`
+    - Auth Middleware (`AuthRequest` type + JWT verification)
+    - Ownership checks in controllers
+- **Next Step:** Setup Next.js Frontend (Week 2)
 
 ## Tech Stack
 
@@ -55,11 +64,11 @@ prisma/
 ```
 
 **API Endpoints:**
-- `POST /api/auth/login` - Login, returns JWT (Pending)
+- `POST /api/auth/login` - Login, returns JWT (Next)
 - `GET /api/applications` - List all (**Completed**)
 - `POST /api/applications` - Create new (**Completed**)
-- `PUT /api/applications/:id` - Update existing (Next)
-- `DELETE /api/applications/:id` - Delete (Next)
+- `PUT /api/applications/:id` - Update existing (**Completed**)
+- `DELETE /api/applications/:id` - Delete (**Completed**)
 
 ---
 
@@ -86,12 +95,12 @@ frontend/
 ### Week 1: Backend
 1. Setup Express + TypeScript project (**Done**)
 2. Create Prisma schema (**Done**)
-3. Build 5 API endpoints (2/5 **Done**)
-4. Add JWT middleware
-5. Test with curl/Postman
+3. Build API endpoints (**Done**)
+4. Add JWT middleware (**Done**)
+5. Test with curl/Postman (**Done**)
 
 ### Week 2: Frontend  
-1. Setup Next.js + Tailwind
+1. Setup Next.js + Tailwind (**Next**)
 2. Build login page
 3. Build dashboard with list view
 4. Build add/edit form (modal or inline)
@@ -135,14 +144,13 @@ frontend/
 **Backend:**
 - Use Postman/curl to test each endpoint
 - Create a test user (**Done**)
-- Create/read/update/delete test applications
+- Create/read/update/delete test applications (**Done**)
 
 ---
 
 ## Next Steps
 
-1. Implement Update and Delete endpoints
-2. Add JWT Authentication
-3. Start Frontend Setup
+1. Setup Next.js Frontend
+2. Implement Login UI & API Integration
 
 **Keep it simple. Get it working. Polish later.**
