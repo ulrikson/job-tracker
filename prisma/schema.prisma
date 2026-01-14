@@ -5,8 +5,7 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/client"
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -15,26 +14,20 @@ datasource db {
 }
 
 model User {
-  id           Int           @id @default(autoincrement())
-  email        String        @unique
-  password     String
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
-  applications Application[]
+  id              Int              @id @default(autoincrement())
+  email           String           @unique
+  password        String
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  jobApplications JobApplication[]
 }
 
-model Application {
-  id               Int      @id @default(autoincrement())
-  userId           Int
-  user             User     @relation(fields: [userId], references: [id])
-  company          String
-  link             String
-  vibe             Int
-  notes            String?
-  layoffInfo       Boolean
-  status           String
-  dateFirstContact DateTime
-  dateLastUpdate   DateTime
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
+model JobApplication {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  company   String
+  link      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
